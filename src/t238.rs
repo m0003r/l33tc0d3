@@ -10,7 +10,6 @@ impl Solution {
             }))
             .collect::<Vec<i32>>();
 
-
         let mut right_part = 1;
         for i in (0..nums.len()).rev() {
             output[i] *= right_part;
