@@ -1,0 +1,1 @@
+Leetcode solutions in idiomatic (kind of) Rust
