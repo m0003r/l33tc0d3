@@ -9,7 +9,10 @@ impl Solution {
         assert_eq!(nums2.len(), n);
 
         unsafe {
-            let mut m_iter = std::slice::from_raw_parts(nums1.as_ptr(), m).iter().rev().peekable();
+            let mut m_iter = std::slice::from_raw_parts(nums1.as_ptr(), m)
+                .iter()
+                .rev()
+                .peekable();
             let mut n_iter = nums2.iter().rev().peekable();
 
             nums1.iter_mut().rev().for_each(|num| {

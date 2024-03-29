@@ -9,7 +9,7 @@ impl Solution {
         }
 
         assert!(k >= 0, "k must be non-negative");
-        let k = k as usize;
+        let k = (k as usize) % nums.len();
 
         // we will rotate array backwards
         let rk = (nums.len() - k) % nums.len();
@@ -50,5 +50,12 @@ mod tests {
         let mut nums = vec![1, 2, 3, 4];
         Solution::rotate(&mut nums, 2);
         assert_eq!(nums, vec![3, 4, 1, 2]);
+    }
+
+    #[test]
+    fn test_31() {
+        let mut nums = vec![1, 2, 3];
+        Solution::rotate(&mut nums, 4);
+        assert_eq!(nums, vec![3, 1, 2]);
     }
 }
