@@ -7,7 +7,7 @@ impl Solution {
         nums.iter()
             .enumerate()
             .try_fold(0, |max_reachable, (i, &num)| {
-                let num  = num as usize;
+                let num = num as usize;
                 if i > max_reachable {
                     ControlFlow::Break(false)
                 } else {

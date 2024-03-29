@@ -1,4 +1,5 @@
 struct Solution;
+
 impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
         let nums = nums.as_mut_slice();
@@ -7,21 +8,24 @@ impl Solution {
             return;
         }
 
-        let k = (k as usize) % nums.len();
+        assert!(k >= 0, "k must be non-negative");
+        let k = k as usize;
+
+        // we will rotate array backwards
+        let rk = (nums.len() - k) % nums.len();
         let mut remains = nums.len();
         let mut start = 0;
 
         while remains > 0 {
+            let last_element = nums[start];
             let mut curr = start;
-            let mut prev = nums[start];
             loop {
-                let next = (curr + k) % nums.len();
-                let tmp = nums[next];
-                nums[next] = prev;
-                prev = tmp;
+                let next = (curr + rk) % nums.len();
+                nums[curr] = nums[next];
                 curr = next;
                 remains -= 1;
                 if curr == start {
+                    nums[(start + k) % nums.len()] = last_element;
                     break;
                 }
             }

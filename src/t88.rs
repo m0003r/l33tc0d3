@@ -8,33 +8,37 @@ impl Solution {
         assert_eq!(nums1.len(), m + n);
         assert_eq!(nums2.len(), n);
 
-        let mut m_iter = m;
-        let mut n_iter = n;
+        unsafe {
+            let mut m_iter = std::slice::from_raw_parts(nums1.as_ptr(), m).iter().rev().peekable();
+            let mut n_iter = nums2.iter().rev().peekable();
 
-        for t in (0..(m + n)).rev() {
-            let next_m = nums1.get(m_iter - 1);
-            let next_n = nums2.get(n_iter - 1);
+            nums1.iter_mut().rev().for_each(|num| {
+                let m = m_iter.peek();
+                let n = n_iter.peek();
 
-            match (next_m, next_n) {
-                (Some(m_val), Some(n_val)) => {
-                    if m_val > n_val {
-                        nums1[t] = *m_val;
-                        m_iter -= 1;
-                    } else {
-                        nums1[t] = *n_val;
-                        n_iter -= 1;
+                match (m, n) {
+                    (Some(&m), Some(&n)) => {
+                        if m > n {
+                            *num = *m;
+                            m_iter.next();
+                        } else {
+                            *num = *n;
+                            n_iter.next();
+                        }
+                    }
+                    (Some(&m), None) => {
+                        *num = *m;
+                        m_iter.next();
+                    }
+                    (None, Some(&n)) => {
+                        *num = *n;
+                        n_iter.next();
+                    }
+                    (None, None) => {
+                        unreachable!()
                     }
                 }
-                (Some(m_val), None) => {
-                    nums1[t] = *m_val;
-                    m_iter -= 1;
-                }
-                (None, Some(n_val)) => {
-                    nums1[t] = *n_val;
-                    n_iter -= 1;
-                }
-                (None, None) => unreachable!(),
-            }
+            });
         }
     }
 }
