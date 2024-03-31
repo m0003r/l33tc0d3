@@ -16,8 +16,6 @@ impl Solution {
         let mut end = 0;
         let mut min_region = None;
 
-        eprintln!("Str: {:?}, T: {:?}", s, t);
-
         while total_stat >= 0 || end < s.len() {
             if total_stat >= 0 {
                 let c = s[start] as usize;
@@ -35,7 +33,6 @@ impl Solution {
                 end += 1;
             }
 
-            eprintln!("Start: {}, End: {}, Total Stat: {}, Stats: {:?}", start, end, total_stat, stats);
             if total_stat == 0 {
                 min_region = match min_region {
                     Some((min_start, min_end)) => {
