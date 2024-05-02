@@ -48,9 +48,9 @@ impl Solution {
         }
 
         match min_region {
-            Some((min_start, min_end)) => {
-                std::str::from_utf8 (&s[min_start..min_end]).unwrap().to_string()
-            }
+            Some((min_start, min_end)) => std::str::from_utf8(&s[min_start..min_end])
+                .unwrap()
+                .to_string(),
             None => "".to_string(),
         }
     }

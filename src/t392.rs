@@ -23,17 +23,17 @@ mod tests {
 
     #[test]
     fn test_1() {
-        assert_eq!(
-            Solution::is_subsequence("abc".to_string(), "ahbgdc".to_string()),
-            true
-        );
+        assert!(Solution::is_subsequence(
+            "abc".to_string(),
+            "ahbgdc".to_string()
+        ));
     }
 
     #[test]
     fn test_2() {
-        assert_eq!(
-            Solution::is_subsequence("axc".to_string(), "ahbgdc".to_string()),
-            false
-        );
+        assert!(!Solution::is_subsequence(
+            "axc".to_string(),
+            "ahbgdc".to_string()
+        ));
     }
 }

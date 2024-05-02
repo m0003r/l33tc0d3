@@ -2,7 +2,7 @@ struct Solution;
 
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        assert!(prices.len() > 0);
+        assert!(!prices.is_empty());
         prices
             .iter()
             .fold((prices[0], 0), |(min_price, curr_profit), price| {
