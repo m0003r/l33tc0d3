@@ -3,6 +3,7 @@ use std::collections::BinaryHeap;
 use std::fmt::{Display, Formatter};
 
 use std::ops::Range;
+use crate::stocks_n::max_stock_profit;
 
 mod t121;
 mod t122;
@@ -18,6 +19,9 @@ mod t58;
 mod t76;
 mod t88;
 mod t31;
+mod t85;
+mod stocks_n;
+mod t32;
 
 #[derive(Eq, PartialEq)]
 struct Answer {
@@ -83,6 +87,11 @@ impl Display for Answer {
 }
 
 fn main() {
+
+    max_stock_profit(vec![3, 5, 4, 6, 1, 7], 5);
+
+    return;
+
     let _buf = String::with_capacity(10);
     let target = 10000..100000;
     let mut output = BinaryHeap::with_capacity(40000);
